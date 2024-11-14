@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  * 1. /second요청 -> 파일위치 : /jsp/second.jsp
  * 2. /jsp/second요청 -> 파일위치 : second.jsp
  */
-@WebServlet("/jsp/second")
+//@WebServlet("/jsp/second")
 public class SecondServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

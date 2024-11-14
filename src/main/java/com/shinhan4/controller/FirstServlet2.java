@@ -21,14 +21,14 @@ import javax.servlet.http.HttpServletResponse;
  * Web brower에서 요청(request) -> web서버 -> WAS(Web Application Server : Tomcat서버) -> response -> Browser
  * 기본경로(절대경로) ./ -> http://localhost:9090/bananaShop/first
  */
-@WebServlet({"/first","/first2","/aa/first3"})
-public class FirstServlet extends HttpServlet {
+@WebServlet({"/first4","/first5","/aa/first6"})
+public class FirstServlet2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FirstServlet() {
+    public FirstServlet2() {
         System.out.println("FirstServlet 생성자 -> 최초 요청시 1회 생성");
     }
 
