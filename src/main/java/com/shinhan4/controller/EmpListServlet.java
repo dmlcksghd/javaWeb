@@ -17,6 +17,7 @@ import emp.EmpService;
 /**
  * Servlet implementation class EmpListServlet
  */
+// Sevlet : 사용자의 요청을 받아서 처리가능한 서버에서 실행되는 자바 Class
 @WebServlet("/emp/emplist.do")
 public class EmpListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
