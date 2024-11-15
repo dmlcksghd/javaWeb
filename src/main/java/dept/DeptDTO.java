@@ -1,12 +1,13 @@
 package dept;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
-@Setter @Getter @ToString @NoArgsConstructor @AllArgsConstructor
+@Data @ToString @NoArgsConstructor @AllArgsConstructor
+@Builder
 public class DeptDTO {
 	int department_id;
 	String department_name;

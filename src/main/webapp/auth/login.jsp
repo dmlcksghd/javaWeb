@@ -12,16 +12,24 @@
 <!-- 상대경로: http://localhost:9090 -->
 <!-- 절대경로: http://localhost:9090/bananaShop/auth/login.do -->
 <c:set var="path" value="${pageContext.request.servletContext.contextPath}"></c:set>
-<form action="${path}/auth/login.do" method="get">
+<form action="${path}/auth/login.do" method="post" enctype="application/x-www-form-urlencoded">
     <label>사용자번호</label>
-    <input type="text" name="userid" value="master"><br>
+    <input type="text" name="userid" value="user1"><br>
     <label>비밀번호</label>
     <input type="password" name="userpass" value="1234"><br>
     <input type="submit" value="로그인">
+    <hr>
+    <h2>parameter연습</h2>
+    <input type="radio" name="food" value="감자탕">감자탕
+    <input type="radio" name="food" value="김밥">김밥
+    <input type="radio" name="food" value="피자">피자
+    <div>
+	    <input type="checkbox" name="food2" value="메뉴1">메뉴1
+	    <input type="checkbox" name="food2" value="메뉴2">메뉴2
+	    <input type="checkbox" name="food2" value="메뉴3">메뉴3
+	    <input type="checkbox" name="food2" value="메뉴4">메뉴4
+    </div>
 </form>
 
-<!-- 전달받은 userid와 userpass 출력 -->
-<p>사용자 ID: ${userId}</p>
-<p>비밀번호: ${userPass}</p>
 </body>
 </html>
