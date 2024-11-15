@@ -20,6 +20,8 @@
 		<%-- 
 			items =>List<DeptDTO> deptlist = getAttribute("deptDatas")
 			for(DeptDTO dept :deptlist) { }
+			DeptDTO() // 기본생성자로 생성된다. JavaBeans기술은 기본생성자로 생성
+			dept.setDepartment_id(값)
 		 --%>
 		<c:forEach items="${deptDatas}" var="dept">
 			<tr>

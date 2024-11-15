@@ -13,7 +13,10 @@ import dept.DeptDTO;
 import dept.DeptService;
 
 /**
- * Servlet implementation class DeptListServlet
+ * 
+404 : 요청주소 잘못됨
+405 : 
+500 : 
  */
 @WebServlet("/dept/select.do")
 public class DeptListServlet extends HttpServlet {
