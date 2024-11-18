@@ -4,12 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="refresh" content="3;url=select.do">
 <title>Insert title here</title>
-<style type="text/css">
+<style>
 .orange {
-background-color: orange;
-color:purple;
-border: 5px dotted blue;
+	background-color: orange;
+	color: purple;
+	border: 5px dotted blue;
 }
 </style>
 </head>

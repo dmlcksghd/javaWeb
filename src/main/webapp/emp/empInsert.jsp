@@ -6,6 +6,7 @@
 <head>
 <title>직원등록</title>
 <meta charset="utf-8">
+<meta http-equiv="refresh" content="2;url=emplist.do">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -19,13 +20,6 @@
 </style>	
 </head>
 <body>
-
-<select>
-	<option>A1</option>
-	<option>A2</option>
-	<option>A3</option>
-	<option selected>A4</option>
-</select>
 	<c:set var="path"
 		value="${pageContext.request.servletContext.contextPath}"></c:set>
 

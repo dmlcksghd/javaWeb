@@ -381,13 +381,17 @@ public class EmpDAO {
 		Connection conn = DBUtil.getConnection();
 		PreparedStatement st = null;
 		try {
+			conn.setAutoCommit(false);
 			st = conn.prepareStatement(sql);
 			st.setInt(1, empid);
 			result = st.executeUpdate();
-
+			conn.commit();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 		} finally {
 			DBUtil.dbDisconnect(conn, st, null);
 		}
