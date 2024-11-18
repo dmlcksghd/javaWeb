@@ -21,21 +21,22 @@
 
 		<form action="${path}/dept/insert.do" method="post">
 			<div class="input-group mb-3">
-				<span class="input-group-text">부서번호</span> <input type="number"
+				<span class="input-group-text">부서번호</span> <input type="number" required="required"
 					class="form-control" name="department_id">
 			</div>
 			<div class="input-group mb-3">
-				<span class="input-group-text">부서이름</span> <input type="text"
+				<span class="input-group-text">부서이름</span> <input type="text" required="required"
 					class="form-control" name="department_name">
 			</div>
 			<div class="input-group mb-3">
-				<span class="input-group-text">부서장</span> <input type="number"
+				<span class="input-group-text">부서장</span> <input type="number" required="required"
 					class="form-control" value="101" name="manager_id">
 			</div>
 			<div class="input-group mb-3">
-				<span class="input-group-text">지역번호</span> <input type="number"
+				<span class="input-group-text">지역번호</span> <input type="number" required="required"
 					class="form-control" value="1700" name="location_id">
 			</div>
+			<input type="hidden" name="phone" vlaue="010-1234-5678">
 
 
 			<button type="submit" class="btn btn-primary">신규부서 등록</button>

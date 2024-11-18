@@ -29,6 +29,9 @@ public class DeptInsertServlet extends HttpServlet {
 		//post방식은 parameter가 URI로 오지않고 요청문서의 body로 온다. encoding되지 않아 한글 깨짐
 		request.setCharacterEncoding("utf-8");
 		
+		String hiddenTest = request.getParameter("phone");
+		System.out.println("hiddenTest:" + hiddenTest);
+		
 		int deptId = Integer.parseInt(request.getParameter("department_id"));
 	    String deptName = request.getParameter("department_name");
 	    int mid = Integer.parseInt(request.getParameter("manager_id"));

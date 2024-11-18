@@ -15,8 +15,8 @@ import dept.DeptService;
 /**
  * 
 404 : 요청주소 잘못됨
-405 : 
-500 : 
+405 : 요청한 방식은 함수없음
+500 : 서버프로그램 오류(eclipse console창 확인)
  */
 @WebServlet("/dept/select.do")
 public class DeptListServlet extends HttpServlet {
