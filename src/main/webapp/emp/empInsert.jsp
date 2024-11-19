@@ -21,7 +21,7 @@
 </head>
 <body>
  	<div class="container mt-3">
-		<h2>신규 직원 등록</h2>
+		<h2>신규 직원 등록 ${loginMember2.member_name}</h2>
 		<form action="insert.do" method="post">
 			<div class="input-group mb-3">
 				<span class="input-group-text">직원번호</span> 

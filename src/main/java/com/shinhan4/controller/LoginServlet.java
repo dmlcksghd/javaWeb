@@ -6,11 +6,13 @@ import java.util.Enumeration;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.firstzone.member.MemberDTO;
 import com.firstzone.member.MemberService;
@@ -78,6 +80,16 @@ public class LoginServlet extends HttpServlet {
 			message = "PASS가 잘못되었습니다.";
 		}else {
 			message = member.getMember_name() + "님 환영합니다";
+			
+			//로그린성공시 로그인한 Member를 저장하기
+			//1.context
+			ServletContext app = getServletContext();
+			app.setAttribute("loginMember3", member);
+			//2.session
+			HttpSession session = request.getSession();
+			session.setAttribute("loginMember2", member);
+			//3.request
+			request.setAttribute("loginMember1", member);
 		}
 	    //1.직접HTML문서를 만들어서 응답하기 
 		//response.setContentType("text/html;charset=utf-8");

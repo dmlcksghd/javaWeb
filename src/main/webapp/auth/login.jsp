@@ -21,7 +21,7 @@
   
 <form action="${path}/auth/login.do" method="post"  enctype="application/x-www-form-urlencoded">
   <label>사용자번호</label>
-  <input type="text" name="userid" value="zzilre"><br>
+  <input type="text" name="userid" value="user1"><br>
   <label>비밀번호</label>
   <input type="password" name="userpass" value="1234">
   <input type="submit" value="로그인">

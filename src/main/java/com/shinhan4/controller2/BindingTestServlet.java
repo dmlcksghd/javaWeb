@@ -27,10 +27,13 @@ public class BindingTestServlet extends HttpServlet {
 		session.setAttribute("myName2", "session영역에 저장");
 		application.setAttribute("myName3", "ServletContext(app)영역에 저장");
 		
+		
+		String realPath = application.getRealPath("/auth/login.jsp");
+		System.out.println(realPath);
+		
+		
 		request.getRequestDispatcher("bind1.jsp").forward(request, response);
 	}
-
-	 
 }
 
 

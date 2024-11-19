@@ -16,6 +16,12 @@
 </head>
 <body>
  <div class="container">
+ 
+ <p>로그인한 Member정보 request:${loginMember1.member_name}</p>
+ <p>로그인한 Member정보 session:${loginMember2.member_name}</p>
+ <p>로그인한 Member정보 context:${loginMember3.member_name}</p>
+ 
+ <hr>
   <h1>직원List</h1>
   <table  class="table table-striped table-hover" >
     <tr>
