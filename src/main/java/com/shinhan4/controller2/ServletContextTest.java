@@ -21,6 +21,9 @@ import javax.servlet.http.HttpServletResponse;
 public class ServletContextTest extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	public ServletContextTest() {
+		System.out.println("ServletContextTest 생성자");
+	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//servlet접근
 		String email = getInitParameter("email");

@@ -27,7 +27,7 @@ public class MemberDAO {
 						.member_id(mid)
 						.member_pass(mpass)
 						.member_name(rs.getString("member_name"))
-						.member_email("member_email")
+						.member_email(rs.getString("member_email"))
 						.build(); 
 			}else {
 			    member = MemberDTO.builder().member_id("-1").build();	

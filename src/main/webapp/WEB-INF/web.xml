@@ -16,18 +16,19 @@
 	</context-param>
 
 	<!-- servlet등록 -->
-	<servlet>
+	<!-- <servlet>
 		<servlet-name>servletconfig</servlet-name>
 		<servlet-class>com.shinhan4.controller2.ServletContextTest.java</servlet-class>
 		<init-param>
 			<param-name>email</param-name>
 			<param-value>hh@naver.com</param-value>
 		</init-param>
-	</servlet>
-	<servlet-mapping>
+		<load-on-startup>2</load-on-startup>
+	</servlet> -->
+	<!-- <servlet-mapping>
 		<servlet-name>servletconfig</servlet-name>
 		<url-pattern>/servlet/config</url-pattern>
-	</servlet-mapping>
+	</servlet-mapping>-->
 	<servlet>
 		<servlet-name>bb</servlet-name>
 		<servlet-class>com.shinhan4.controller.SecondServlet</servlet-class>
