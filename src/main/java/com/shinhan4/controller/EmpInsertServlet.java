@@ -10,23 +10,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dept.DeptDTO;
-import dept.DeptService;
-import emp.EmpDTO;
-import emp.EmpService;
-import emp.JobDTO;
-import util.DBUtil;
-import util.DateUtil;
+import com.firstzone.dept.DeptDTO;
+import com.firstzone.dept.DeptService;
+import com.firstzone.emp.EmpDTO;
+import com.firstzone.emp.EmpService;
+import com.firstzone.emp.JobDTO;
+import com.shinhan.util.DateUtil;
 
 /**
- * Servlet default주소 : http://localhost:9090/bananaShop
+ * 서블릿의 default주소==> http://localhost:9090/bananaShop 
  */
 @WebServlet("/emp/insert.do")
 public class EmpInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-  
+ 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		//
 		DeptService dService = new DeptService();
 		EmpService eService = new EmpService();
@@ -34,28 +33,31 @@ public class EmpInsertServlet extends HttpServlet {
 		List<DeptDTO> deptlist = dService.selectAllService();
 		List<JobDTO> joblist = eService.selectAllJobService();
 		List<EmpDTO> mlist = eService.selectAllService();
-		System.out.println("부서건수: " + deptlist.size());
-		System.out.println("직책건수: " + joblist.size());
-		System.out.println("매니저건수: " + mlist.size());
+		//System.out.println("부서건수:" + deptlist.size());
+		//System.out.println("직책건수:" + joblist.size());
+		//System.out.println("메니저건수:" + mlist.size());
+		
 		request.setAttribute("deptlist", deptlist);
 		request.setAttribute("joblist", joblist);
 		request.setAttribute("managerlist", mlist);
 		
 		//응답은 JSP에 위임한다.
 		request.getRequestDispatcher("empInsert.jsp").forward(request, response);
+		
+		
 	}
 
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		
-		EmpDTO emp = makeEmp(request);
-		EmpService eService = new EmpService();
-		int result = eService.insertService(emp);
-		System.out.println(result + "건 입력");
-		
-		//재요청(Browser의 요청주소가 바뀐다.)
-		response.sendRedirect("emplist.do");
+
+	protected void doPost(HttpServletRequest request, 
+			HttpServletResponse response) throws ServletException, IOException {
+         EmpDTO emp = makeEmp(request);
+         System.out.println(emp);
+         EmpService eService = new EmpService();
+         int result = eService.insertService(emp);
+         System.out.println(result + "건 입력");	
+         
+         //재요청(Browser의 요청 주소가 바뀐다.) 
+         response.sendRedirect("emplist.do");
 	}
 
 
@@ -76,19 +78,20 @@ public class EmpInsertServlet extends HttpServlet {
 		String str_manager = request.getParameter("manager_id");
 		Integer mid = Integer.parseInt(str_manager);
 		
-		String str_commission = request.getParameter("commission_pct");
+		String str_commission = request.getParameter("commission_pct");	
+		
 		Double commission = 0.0;
-		if(str_commission != "" && str_commission != null) {
+		if(str_commission!="" && str_commission != null) {
 			commission = Double.parseDouble(str_commission);
 		}
-
+		
 		String str_salary = request.getParameter("salary");
 		Double salary = 0.0;
 		if(str_salary != "" && str_salary != null) {
 			salary = Double.parseDouble(str_salary);
 		}
 		
-		//String -> java.sql.Date
+		//String==>java.sql.Date
 		Date hdate = DateUtil.convertSqlDate(
 				DateUtil.convertDate(request.getParameter("hire_date")));
 		
@@ -108,3 +111,15 @@ public class EmpInsertServlet extends HttpServlet {
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+

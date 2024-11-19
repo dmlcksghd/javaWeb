@@ -356,8 +356,8 @@ public class EmpDAO {
 			st.setString(6, emp.getJob_id());
 			st.setDouble(7, emp.getSalary());
 			st.setDouble(8, emp.getCommission_pct());
-			st.setInt(9, emp.getManager_id());
-			st.setInt(10, emp.getDepartment_id());
+			st.setInt(9, emp.getManager_id()==-1?null:emp.getManager_id());
+			st.setInt(10, emp.getDepartment_id()==-1?null:emp.getDepartment_id());
 
 			result = st.executeUpdate();
 

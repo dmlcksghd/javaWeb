@@ -9,48 +9,54 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dept.DeptDTO;
-import dept.DeptService;
+import com.firstzone.dept.DeptDTO;
+import com.firstzone.dept.DeptService;
 
 /**
- * Servlet implementation class DeptListServlet
+ * Servlet implementation class DeptInsertServlet
  */
 @WebServlet("/dept/insert.do")
 public class DeptInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("deptInsert.jsp");
-		rd.forward(request, response);
-		
-	}
 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //요청은 서블릿이 받고 응답은 jsp위임함   
+		RequestDispatcher rd = request.getRequestDispatcher("deptInsert.jsp");
+          rd.forward(request, response);	
+	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//post방식은 parameter가 URI로 오지않고 요청문서의 body로 온다. encoding되지 않아 한글 깨짐
+		
+		//post방식은 parameter가 URI로 오지않고 요청문서의 body로 온다. encoding되지않아 한글깨짐 
 		request.setCharacterEncoding("utf-8");
 		
 		String hiddenTest = request.getParameter("phone");
 		System.out.println("hiddenTest:" + hiddenTest);
 		
-		int deptId = Integer.parseInt(request.getParameter("department_id"));
-	    String deptName = request.getParameter("department_name");
-	    int mid = Integer.parseInt(request.getParameter("manager_id"));
-	    int lid = Integer.parseInt(request.getParameter("location_id"));
-		
+		int deptid = Integer.parseInt(request.getParameter("department_id"));
+		String deptname = request.getParameter("department_name");
+		int mid = Integer.parseInt(request.getParameter("manager_id"));
+		int locid = Integer.parseInt(request.getParameter("location_id"));
+		DeptDTO dept = DeptDTO.builder()
+				.department_id(deptid)
+				.department_name(deptname)
+				.manager_id(mid)
+				.location_id(locid)
+				.build();
 		DeptService dService = new DeptService();
-		//DeptDTO deptDTO = new DeptDTO(deptId, deptName, mid, lid);
-		DeptDTO deptDTO = DeptDTO.builder()
-					.department_id(deptId)
-					.department_name(deptName)
-					.manager_id(mid)
-					.location_id(lid)
-					.build();
-		int dept = dService.insertService(deptDTO);
-		System.out.println(dept + "건 입력");
+		int count = dService.insertService(dept);
+		System.out.println(count + "건 입력");
+	
+		request.setAttribute("resultMessage", count + "건 입력");
+		RequestDispatcher rd = request.getRequestDispatcher("result.jsp");
+        rd.forward(request, response);	
 		
-		request.setAttribute("resultMessage",dept + "건 입력");
-		RequestDispatcher rd = request.getRequestDispatcher("/auth/result.jsp");
-		rd.forward(request, response);
+		
 	}
 
 }
+
+
+
+
+
+

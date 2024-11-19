@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * HTML, JSP 절대경로 => http://localhost:9090
- * servlet 절대경로 => http://localhost:9090/bananaShop 
- * 현재경로 => http://localhost:9090/bananaShop/jsp/second
- * 1. /second요청 -> 파일위치 : /jsp/second.jsp
- * 2. /jsp/second요청 -> 파일위치 : second.jsp
+ * HTML,JSP절대경로? http://localhost:9090
+ * servelt 절대경로? http://localhost:9090/bananaShop
+ * 현재경로? http://localhost:9090/bananaShop/jsp/second
+ * 1. 주소 /second요청=====> 파일위치 /jsp/second.jsp
+ * 2. 주소 /jsp/second요청=====>파일위치 second.jsp
  */
 //@WebServlet("/jsp/second")
 public class SecondServlet extends HttpServlet {
@@ -22,12 +22,15 @@ public class SecondServlet extends HttpServlet {
        
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("ContextPath(): " + request.getContextPath());
+ 
+		System.out.println("ContextPath():" + request.getContextPath());
 		
-		//위임하기 Browser요청 --> Servlet 로직 수행 후 -> 응답은 JSP넘기기
-		RequestDispatcher rd = request.getRequestDispatcher("/second.jsp");
+		//위임하기 Browser요청--->Servlet...로직수행후 --->응답은 JSP넘기기  
+		RequestDispatcher rd = request.getRequestDispatcher("second.jsp");
 		rd.forward(request, response);
+		
 	}
 
+	 
 
 }

@@ -6,8 +6,32 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+
+import org.apache.tomcat.jdbc.pool.DataSource;
+
 public class DBUtil {
+	
 	public static Connection getConnection() {
+		Connection conn = null;
+		Context initContext;
+		try {
+			initContext = new InitialContext();
+			Context envContext  = (Context)initContext.lookup("java:/comp/env");
+			DataSource ds = (DataSource)envContext.lookup("jdbc/myoracle");
+			conn = ds.getConnection();
+		} catch (NamingException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return conn;
+		
+	}
+	
+	public static Connection getConnection2() {
 		Connection conn = null;
 		
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
