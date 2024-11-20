@@ -21,6 +21,12 @@ import com.firstzone.member.MemberService;
 
 /**
  * default경로:http://localhost:9090/bananaShop
+ * 요청주소: @WebServlet("/auth/login.do")
+ * 주소패턴: 
+ * 	1. 이름까지 일치하는 방법
+ * 	2. 디렉토리까지만 일치하는 경우 @WebServlet("/auth/*")
+ * 	3. 확장자만 일치하는 경우 @WebServlet("*.do")
+ * 	4. 모든 요청 @WebServlet("/*")
  */
 @WebServlet("/auth/login.do")
 public class LoginServlet extends HttpServlet {
@@ -28,6 +34,12 @@ public class LoginServlet extends HttpServlet {
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("GET");
+		
+//		System.out.println(request.getContextPath());	// /bananaShop
+//		System.out.println(request.getRequestURL().toString());	// http://localhost:9090/bananaShop/auth/login.do
+//		System.out.println(request.getRequestURI()); // /bananaShop/auth/login.do
+//		
+//		System.out.println(request.getQueryString()); // ?뒤에오는 parameter
 		
 		//위임 (받은 요청을 전달)
 		//forward : 주소창은 변하지않고 내용만 변경된다. 
@@ -38,35 +50,35 @@ public class LoginServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("POST");
 		
-		request.setCharacterEncoding("utf-8");
+		//request.setCharacterEncoding("utf-8");
 		
 		//1.각각의 파라메터를 읽기
 		String uid = request.getParameter("userid");
 		String upass = request.getParameter("userpass");
 		
 		//parameter읽기 연습
-		String food = request.getParameter("food");//1개
-		System.out.println(food);		
-		String[] food2 = request.getParameterValues("food2");//여러개 
-		System.out.println(Arrays.toString(food2));
-		System.out.println("-----getParameterNames이용---------------------------------------");
-		Enumeration<String> pNames = request.getParameterNames();
-		while(pNames.hasMoreElements()) {
-			String name = pNames.nextElement();
-			if(name.equals("food2")) {
-				String[] arr = request.getParameterValues(name);//여러개 
-				System.out.println(Arrays.toString(arr));
-			}else {
-				String value = request.getParameter(name);
-				System.out.println(value);
-			}
-		}
-		System.out.println("-------getParameterMap이용-------------------------------------");
-		Map<String,String[]> map = request.getParameterMap();
-		for(String key:map.keySet()) {
-			String[] arr2 = request.getParameterValues(key);
-			System.out.println(Arrays.toString(arr2));
-		}
+//		String food = request.getParameter("food");//1개
+//		System.out.println(food);		
+//		String[] food2 = request.getParameterValues("food2");//여러개 
+//		System.out.println(Arrays.toString(food2));
+//		System.out.println("-----getParameterNames이용---------------------------------------");
+//		Enumeration<String> pNames = request.getParameterNames();
+//		while(pNames.hasMoreElements()) {
+//			String name = pNames.nextElement();
+//			if(name.equals("food2")) {
+//				String[] arr = request.getParameterValues(name);//여러개 
+//				System.out.println(Arrays.toString(arr));
+//			}else {
+//				String value = request.getParameter(name);
+//				System.out.println(value);
+//			}
+//		}
+//		System.out.println("-------getParameterMap이용-------------------------------------");
+//		Map<String,String[]> map = request.getParameterMap();
+//		for(String key:map.keySet()) {
+//			String[] arr2 = request.getParameterValues(key);
+//			System.out.println(Arrays.toString(arr2));
+//		}
 		
 		
 		
@@ -77,7 +89,7 @@ public class LoginServlet extends HttpServlet {
 		String message= "";
 		
 		if(member == null) {
-			message = "ID not found";
+			message = URLEncoder.encode("ID가 존재하지 않습니다.","utf-8");
 			response.sendRedirect("login.do?"+message);
 			return;
 		}else if(member.getMember_id().equals("-1")) {
@@ -94,6 +106,7 @@ public class LoginServlet extends HttpServlet {
 			//2.session
 			HttpSession session = request.getSession();
 			session.setAttribute("loginMember2", member);
+			session.setAttribute("loginMember", member);
 			//3.request
 			request.setAttribute("loginMember1", member);
 			
