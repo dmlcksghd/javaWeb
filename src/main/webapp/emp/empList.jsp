@@ -59,6 +59,7 @@
 
 		<hr>
 		<h1>직원List</h1>
+		<div id="table_here">
 		<table class="table table-striped table-hover">
 			<tr>
 				<td>직원번호</td>
@@ -104,6 +105,7 @@
 				</tr>
 			</c:forEach>
 		</table>
+		</div>
 	</div>
 	<script type="text/javascript">
 		$(function() {
@@ -121,7 +123,10 @@
 					"chk" : $('[name="chkDate"]').prop('checked')
 
 				},
-				success : function() {
+				success : function(responseData) {
+					//2.data를 받아서 HTML을 만들까?NO
+					//3.JSP를 받아서 현재 화면에 대치(replace)
+					$("#table_here").html(responseData);
 				},
 				error : function(err) {
 					alert(err);

@@ -33,13 +33,20 @@ public class EmpListServlet2 extends HttpServlet {
 		map.put("department_id", Integer.parseInt(deptid));
 		map.put("job_id", jobid);
 		map.put("salary", Double.parseDouble(salary));
-		if(chk.equals("true")) hdate = "1900-01-01";
+		if (chk.equals("true") || hdate.equals("") || hdate == null) {
+            hdate = "1900-01-01";
+        }
 		map.put("hire_date", DateUtil.convertSqlDate(DateUtil.convertDate(hdate)));
 		
 		//System.out.println(hdate);
 		EmpService eService = new EmpService();
 		List<EmpDTO>emplist = eService.selectByCondition(map);
-		System.out.println(emplist.size());
+		//System.out.println(emplist.size());
+		//1.HTML만들까? NO
+		//3.JSP로 forward? OK
+		
+		request.setAttribute("empDatas", emplist);
+		request.getRequestDispatcher("empListTable.jsp").forward(request, response);
 	}
 
 }
