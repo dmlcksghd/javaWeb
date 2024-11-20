@@ -17,6 +17,9 @@
 </head>
 <body>
  <div class="container">
+ <!-- include 디렉티브태그는 jsp를 합쳐서 컴파일한다. -->
+ <%@ include file="../jsp/header.jsp" %>
+ <%=myName %>
  
  <%-- <p>로그인한 Member정보 request:${loginMember1.member_name}</p> --%>
  <p>로그인한 Member정보 session:${loginMember2.member_name}</p>
@@ -44,10 +47,10 @@
     <c:forEach items="${empDatas}" var="emp">
 	    <tr>
 	      <td>
-	      <a href="detail.do?empid=${emp.employee_id}">${emp.employee_id}</a>
+	      <a href="${path}/emp/detail.do?empid=${emp.employee_id}">${emp.employee_id}</a>
 	      </td>
 	      <td>
-	      <a href="detail.do?empid=${emp.employee_id}">${emp.first_name}</a>
+	      <a href="${path}/emp/detail.do?empid=${emp.employee_id}">${emp.first_name}</a>
 	      </td>
 	      <td>${emp.last_name}</td>
 	      <td>${emp.email}</td>
@@ -60,12 +63,12 @@
 	      <td>${emp.department_id}</td> 
 	      <td>
 		      <button class="btn btn-success"
-		          onclick="location.href='delete.do?empid=${emp.employee_id}'">
+		          onclick="location.href='${path}/emp/delete.do?empid=${emp.employee_id}'">
 		         삭제(get)
 		      </button>
 	      </td>
 	      <td>
-	          <form action="delete.do" method="post">
+	          <form action="${path}/emp/delete.do" method="post">
 	            <input type="hidden" name="empid" value="${emp.employee_id}">
 	            <button class="btn btn-success">삭제(post)</button>
 	          </form>
