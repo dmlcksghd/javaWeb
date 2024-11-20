@@ -112,13 +112,13 @@ public class LoginServlet extends HttpServlet {
 			
 			
 			// 쿠키에 저장하기
-			Cookie cookie_id = new Cookie("loginId", member.getMember_id());
-			Cookie cookie_name = new Cookie("loginName", URLEncoder.encode(member.getMember_name(),"utf-8"));
-			Cookie cookie_email = new Cookie("loginEmail", member.getMember_email());
-			
-			response.addCookie(cookie_id);
-			response.addCookie(cookie_name);
-			response.addCookie(cookie_email);
+//			Cookie cookie_id = new Cookie("loginId", member.getMember_id());
+//			Cookie cookie_name = new Cookie("loginName", URLEncoder.encode(member.getMember_name(),"utf-8"));
+//			Cookie cookie_email = new Cookie("loginEmail", member.getMember_email());
+//			
+//			response.addCookie(cookie_id);
+//			response.addCookie(cookie_name);
+//			response.addCookie(cookie_email);
 		}
 	    //1.직접HTML문서를 만들어서 응답하기 
 		//response.setContentType("text/html;charset=utf-8");

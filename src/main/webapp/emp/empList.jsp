@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>  
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.servletContext.contextPath}"></c:set>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,13 +18,14 @@
 <body>
  <div class="container">
  
- <p>로그인한 Member정보 request:${loginMember1.member_name}</p>
+ <%-- <p>로그인한 Member정보 request:${loginMember1.member_name}</p> --%>
  <p>로그인한 Member정보 session:${loginMember2.member_name}</p>
- <p>로그인한 Member정보 context:${loginMember3.member_name}</p>
+ <%-- <p>로그인한 Member정보 context:${loginMember3.member_name}</p> --%>
  
+ <a href="${path}/auth/logout.do">로그아웃</a>
  <hr>
   <h1>직원List</h1>
-  <table  class="table table-striped table-hover" >
+  <table  class="table table-striped table-hover">
     <tr>
       <td>직원번호</td>
       <td>fname</td>

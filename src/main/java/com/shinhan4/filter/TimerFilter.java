@@ -9,37 +9,33 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpFilter;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Servlet Filter implementation class TimerFilter
  */
-@WebFilter("/TimerFilter")
+//@WebFilter("/*")
 public class TimerFilter extends HttpFilter implements Filter {
        
-    /**
-     * @see HttpFilter#HttpFilter()
-     */
     public TimerFilter() {
-        super();
-        // TODO Auto-generated constructor stub
+        //System.out.println("TimerFilter 서버 시작시 생성");
     }
 
 	/**
 	 * @see Filter#destroy()
 	 */
 	public void destroy() {
-		// TODO Auto-generated method stub
+		//System.out.println("TimerFilter 서버 종료시 소멸");
 	}
 
-	/**
-	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
-	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		// place your code here
-
-		// pass the request along the filter chain
+		long start = System.nanoTime();
 		chain.doFilter(request, response);
+		long end = System.nanoTime();
+		
+		HttpServletRequest req = (HttpServletRequest)request;
+		System.out.println(req.getRequestURI() + "요청");
+		System.out.println("걸린시간 :" + (end - start) + "ns");
 	}
 
 	/**

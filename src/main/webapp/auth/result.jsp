@@ -20,17 +20,6 @@
 </head>
 <body>
   <h1 class="orange">${resultMessage}</h1>
-  
-  <%
-  	Cookie[] arr = request.getCookies();
-  	for(Cookie cc : arr) {
-  		String val = cc.getValue();
-  		if(cc.getName().equals("loginName")) {
-  			val = URLDecoder.decode(val, "utf-8"); 
-  		}
-  		out.print("<p>" + cc.getName() + ":" + cc.getValue() + "</p>");
-  	}
-  
-  %>
+
 </body>
 </html>
