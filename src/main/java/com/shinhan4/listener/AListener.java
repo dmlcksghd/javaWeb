@@ -28,11 +28,11 @@ public class AListener implements ServletContextListener, HttpSessionListener, H
 	/**
      * @see HttpSessionListener#sessionCreated(HttpSessionEvent)
      */
-    public void sessionCreated(HttpSessionEvent se)  { 
-    	synchronized (this) {
+    public void sessionCreated(HttpSessionEvent se) {
+        synchronized (this) {
             total_user++;
         }
-         System.out.println("sessionCreated 현재 접속수: " + total_user);
+        System.out.println("sessionCreated 현재 접속수: " + total_user);
     }
 
 	/**

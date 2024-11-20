@@ -60,7 +60,6 @@
 							${dept.department_name}</option>
 					</c:forEach>
 				</select>
-
 			</div>
 			<div class="input-group mb-3">
 				<span class="input-group-text">메니저</span> <select

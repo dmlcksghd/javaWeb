@@ -219,8 +219,8 @@ public class EmpDAO {
 		// 모든 직원을 조회하기
 		String sql = "select * "
 				+ " from employees "
-				+ " where department_id = ? "
-				+ " and job_id = ? "
+				+ " where (-1 = ? or department_id = ?) "
+				+ " and ('-1' = ? or job_id = ?) "
 				+ " and salary >= ? "
 				+ " and  hire_date >= ?" ;
 		Connection conn = DBUtil.getConnection();
@@ -230,9 +230,11 @@ public class EmpDAO {
 		try {
 			st = conn.prepareStatement(sql); //SQL문 준비 
 			st.setInt(1, (Integer)map.get("department_id"));  //?에 값을 채우기 
-			st.setString(2, (String)map.get("job_id"));  //?에 값을 채우기 
-			st.setDouble(3, (Double)map.get("salary"));  //?에 값을 채우기 
-			st.setDate(4, (Date)map.get("hire_date"));  //?에 값을 채우기 
+			st.setInt(2, (Integer)map.get("department_id"));  //?에 값을 채우기 
+			st.setString(3, (String)map.get("job_id"));  //?에 값을 채우기 
+			st.setString(4, (String)map.get("job_id"));  //?에 값을 채우기 
+			st.setDouble(5, (Double)map.get("salary"));  //?에 값을 채우기 
+			st.setDate(6, (Date)map.get("hire_date"));  //?에 값을 채우기 
 			
 			rs = st.executeQuery(); //DB에 가서 실행하고 결과를 가져온다. 
 			while (rs.next()) { //다음data가 있는지?

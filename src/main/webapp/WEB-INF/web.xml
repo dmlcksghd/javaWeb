@@ -5,6 +5,16 @@
 	id="WebApp_ID" version="4.0">
 	<display-name>bananaShop</display-name>
 
+	<error-page>
+		<error-code>500</error-code>
+		<location>/error/error500.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/error/error404.jsp</location>
+	</error-page>
+
+
 	<!-- application(ServletContext)에 파라메터 보내기 -->
 	<context-param>
 		<param-name>username</param-name>

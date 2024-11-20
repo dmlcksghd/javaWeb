@@ -15,6 +15,9 @@ import com.firstzone.emp.EmpDTO;
 import com.firstzone.emp.EmpService;
 import com.firstzone.member.MemberDTO;
 
+import dept.DeptDTO;
+import dept.DeptService;
+
 //Servlet : 사용자의 요청을 받아서 처리가능한 서버에서 실행되는 자바Class  
 @WebServlet("/emp/emplist.do")
 public class EmpListServlet extends HttpServlet {
@@ -38,8 +41,14 @@ public class EmpListServlet extends HttpServlet {
          List<EmpDTO> emplist =  empService.selectAllService();
          System.out.println(emplist.size() + "건");
          
+         com.firstzone.dept.DeptService dService = new com.firstzone.dept.DeptService();
+         
          //request영역에 empDatas이름으로 emplist정보를 저장한다.  
          request.setAttribute("empDatas", emplist);
+         request.setAttribute("deptlist", dService.selectAllService());
+         request.setAttribute("joblist", empService.selectAllJobService());
+
+         
          //위임하다.  요청-->서블릿--->jsp응답 
          RequestDispatcher rd = request.getRequestDispatcher("empList.jsp");
          rd.forward(request, response);
