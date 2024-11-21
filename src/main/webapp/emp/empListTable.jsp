@@ -3,6 +3,7 @@
 <%@ include file="../jsp/header.jsp" %>
 <table class="table table-striped table-hover">
 	<tr>
+		<td>번호</td>
 		<td>직원번호</td>
 		<td>fname</td>
 		<td>lname</td>
@@ -17,8 +18,14 @@
 		<td>get요청</td>
 		<td>post요청</td>
 	</tr>
-	<c:forEach items="${empDatas}" var="emp">
+	<c:forEach items="${empDatas}" var="emp" varStatus="status">
 		<tr>
+			<td>
+			${status.count}
+			<c:if test="${status.first}">첫번째</c:if>
+			<c:if test="${status.last}">마지막</c:if>
+			<c:if test="${status.count mod 2 == 0}">짝수</c:if>
+			</td>
 			<td><a href="${path}/emp/detail.do?empid=${emp.employee_id}">${emp.employee_id}</a>
 			</td>
 			<td><a href="${path}/emp/detail.do?empid=${emp.employee_id}">${emp.first_name}</a>

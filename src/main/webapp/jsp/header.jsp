@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="path" value="${pageContext.servletContext.contextPath}"></c:set>
+<c:set var="path" value="${pageContext.servletContext.contextPath}" scope="application"></c:set>
 <meta name="viewprot" content="width=device-width, initiial-scale=1" />
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
