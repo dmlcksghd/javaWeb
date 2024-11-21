@@ -44,7 +44,7 @@ public class EmpListServlet extends HttpServlet {
          com.firstzone.dept.DeptService dService = new com.firstzone.dept.DeptService();
          
          //request영역에 empDatas이름으로 emplist정보를 저장한다.  
-         request.setAttribute("empDatas", emplist);
+         //request.setAttribute("empDatas", emplist);
          request.setAttribute("deptlist", dService.selectAllService());
          request.setAttribute("joblist", empService.selectAllJobService());
 

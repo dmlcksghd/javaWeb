@@ -20,7 +20,9 @@
 	<div class="container">
 		<!-- include 디렉티브태그는 jsp를 합쳐서 컴파일한다. -->
 		<%@ include file="../jsp/header.jsp"%>
-		<%=myName%>
+		<!-- include action tag : 각각의 jsp를 따로 컴파일한다. 컴파일된class가 이 소스에 들어온다. -->
+		<jsp:include page="../jsp/common.jsp"></jsp:include>		
+		<hr>
 
 		<%-- <p>로그인한 Member정보 request:${loginMember1.member_name}</p> --%>
 		<p>로그인한 Member정보 session:${loginMember2.member_name}</p>
@@ -60,56 +62,15 @@
 		<hr>
 		<h1>직원List</h1>
 		<div id="table_here">
-		<table class="table table-striped table-hover">
-			<tr>
-				<td>직원번호</td>
-				<td>fname</td>
-				<td>lname</td>
-				<td>email</td>
-				<td>phone</td>
-				<td>job</td>
-				<td>hiredate</td>
-				<td>commission</td>
-				<td>salary</td>
-				<td>manager</td>
-				<td>department</td>
-				<td>get요청</td>
-				<td>post요청</td>
-			</tr>
-			<c:forEach items="${empDatas}" var="emp">
-				<tr>
-					<td><a href="${path}/emp/detail.do?empid=${emp.employee_id}">${emp.employee_id}</a>
-					</td>
-					<td><a href="${path}/emp/detail.do?empid=${emp.employee_id}">${emp.first_name}</a>
-					</td>
-					<td>${emp.last_name}</td>
-					<td>${emp.email}</td>
-					<td>${emp.phone_number}</td>
-					<td>${emp.job_id}</td>
-					<td>${emp.hire_date}</td>
-					<td>${emp.commission_pct}</td>
-					<td>${emp.salary}</td>
-					<td>${emp.manager_id}</td>
-					<td>${emp.department_id}</td>
-					<td>
-						<button class="btn btn-success"
-							onclick="location.href='${path}/emp/delete.do?empid=${emp.employee_id}'">
-							삭제(get)</button>
-					</td>
-					<td>
-						<form action="${path}/emp/delete.do" method="post">
-							<input type="hidden" name="empid" value="${emp.employee_id}">
-							<button class="btn btn-success">삭제(post)</button>
-						</form>
-					</td>
-				</tr>
-			</c:forEach>
-		</table>
+		
 		</div>
 	</div>
 	<script type="text/javascript">
 		$(function() {
-			$("#btn_condition").on("click", f_ajax);
+			var d = new Date();
+			d.setFullYear(d.getFullYear() - 20);
+			$('[name="hire_date"]').val(d.toISOString().split("T")[0]);
+			$("#btn_condition").on("click", f_ajax);	//이벤트 호출
 		});
 		function f_ajax() {
 			$.ajax({
