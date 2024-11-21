@@ -13,6 +13,7 @@
 <body>
 
 <div class="container mt-3">
+	<%@include file="../jsp/header.jsp" %>
   <h2>부서등록</h2>
    <form action="insert.do" method="post">
     <div class="input-group mb-3">
@@ -34,8 +35,40 @@
     <input type="hidden" name="phone" value="010-1234-5678">
     
     <button type="submit" class="btn btn-primary">신규부서 등록</button>
+    <button id="btn_ajax" type="button" class="btn btn-danger">신규부서 등록(Ajax)</button>
   </form>
 </div>
+<script>
+$("#btn_ajax").on("click", f_jsonInsert);
+function f_jsonInsert() {
+	
+	var obj={
+			"dept_id":$('[name="department_id"]').val(),
+			"deptname":$('[name="department_name"]').val(),
+			"mid":$('[name="manager_id"]').val(),
+			"locid":$('[name="location_id"]').val(),
+			
+	};
+	var jsonStr = JSON.stringify(obj);
+	console.log(obj);
+	console.log(jsonStr);
+	$.ajax({
+		url:"${path}/json.do",
+		type:"get",
+		data:{"jsonInfo":jsonStr},
+		success: function(responseData) {
+			alert(responseData);
+		},
+		error: function(err) {
+			alert(err);
+		},
+		complete: function() {
+			alert("완료");
+		}
+	});
+}
+
+</script>
 
 </body>
 </html>
