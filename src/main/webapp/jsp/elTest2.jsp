@@ -1,3 +1,4 @@
+<%@page import="java.util.Date"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="com.firstzone.emp.EmpDTO"%>
@@ -16,6 +17,10 @@
 	Map<String, List<EmpDTO>> map = new HashMap<>();
 	map.put("empMap", emplist);
 	pageContext.setAttribute("mymap", map);
+	
+	Date d1 = new Date();
+	request.setAttribute("today", d1);
+	request.setAttribute("salary", 123456789);
 %>
 <!DOCTYPE html>
 <html>
@@ -26,6 +31,15 @@
 <body>
 1. 스크립트릿 : <%=emplist.get(0).getFirst_name() %><br>
 2. EL(list) : ${empDatas[0].first_name}
+2. EL(list) : 
+	<%-- <fmt:setLocale value="en_US"/> --%>
+	<fmt:setLocale value="ko_KR"/>
+	<h3>입사일 : 
+	<fmt:formatDate value="${empDatas[0].hire_date}" pattern="yy/MM/dd h:mm:ss"/></h3>
+	<h3>오늘 : <fmt:formatDate value="${today}" type="both" dateStyle="full" timeStyle="full" /></h3>
+	<h3><fmt:formatNumber value="${salary}" type="currency" groupingUsed="true" /></h3>
+	
+	
 3. EL(map) : ${mymap["empMap"][0].first_name}
 3. EL(map) : ${mymap["empMap"][1].first_name}
 
@@ -85,6 +99,14 @@ request.setAttribute("score", 99);
 		<li>${loopStatus.index} / ${loopStatus.count} / ${loopStatus.first} / ${emp.first_name}</li>
 	</c:forEach>
 </ul>
-6. url만들기: 
+6. url만들기: JSTL의 url태그는 default로 contextPath를 사용한다. /bananaShop
+<c:url var="empDetail" value="/emp/detail.do">
+	<c:param name="empid" value="100"></c:param>
+</c:url>
+<a href="${empDetail}">100번 직원 상세보기</a>
+
+<c:forEach begin="1" end="6" var="i">
+    <img alt="이미지" src="${path}/jsp/images/photo-${i}.jpg">
+</c:forEach>
 </body>
 </html>

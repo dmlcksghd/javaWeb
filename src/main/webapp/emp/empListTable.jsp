@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../jsp/header.jsp" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<c:set var="path" value="${pageContext.servletContext.contextPath}"></c:set>
+<fmt:setLocale value="en_US"/>
 <table class="table table-striped table-hover">
 	<tr>
 		<td>번호</td>
@@ -31,12 +35,18 @@
 			<td><a href="${path}/emp/detail.do?empid=${emp.employee_id}">${emp.first_name}</a>
 			</td>
 			<td>${emp.last_name}</td>
-			<td>${emp.email}</td>
-			<td>${emp.phone_number}</td>
+			<td>${fn:toLowerCase(emp.email)}</td>
+			<td>${fn:replace(emp.phone_number,".","-")}</td>
 			<td>${emp.job_id}</td>
-			<td>${emp.hire_date}</td>
+			<td>
+			<fmt:formatDate type="date" dateStyle="full" value="${emp.hire_date}"/>
+			</td>
 			<td>${emp.commission_pct}</td>
-			<td>${emp.salary}</td>
+			
+			<td>
+			<fmt:formatNumber type="currency" value="${emp.salary}"></fmt:formatNumber>
+			</td>
+			
 			<td>${emp.manager_id}</td>
 			<td>${emp.department_id}</td>
 			<td>
